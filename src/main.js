@@ -1,9 +1,19 @@
 import Vue from 'vue'
-import App from './App'
+import MintUI from 'mint-ui'
 
-/* eslint-disable no-new */
+import App from './App'
+import store from './vuex/store'
+import router from './routers'
+
+Vue.use(MintUI)
+
+/**
+ * [template 实例化Vue]
+ * @type {String}
+ */
 new Vue({
-  el: '#app',
+  router,
   template: '<App/>',
+  store,
   components: { App }
-})
+}).$mount('#app')

@@ -30,12 +30,12 @@ module.exports = merge(baseWebpackConfig, {
       filename: './pages/index.html',
       template: './pages/index.html',
       inject: true
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['user'],
-      filename: './pages/user.html',
-      template: './pages/user.html',
-      inject: true
     })
+    // new HtmlWebpackPlugin({
+    //   chunks: ['user'],
+    //   filename: './pages/user.html',
+    //   template: './pages/user.html',
+    //   inject: true
+    // })
   ]
 })

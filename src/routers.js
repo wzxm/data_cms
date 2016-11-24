@@ -1,24 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// const Home = r => require.ensure([], () => r(require('./components/home')), 'group-foo')
-// const Hello = r => require.ensure([], () => r(require('./components/hello')), 'group-foo')
-// const List = r => require.ensure([], () => r(require('./components/list')), 'group-foo')
-const Home = resolve => require(['./components/home'], resolve)
-const Hello = resolve => require(['./components/hello'], resolve)
-const Index = resolve => require(['./components/index'], resolve)
-const Mint = resolve => require(['./components/mint'], resolve)
-const InputBox = resolve => require(['./components/inputBox'], resolve)
-const Animation = resolve => require(['./components/animation'], resolve)
-// const Bar = resolve => require(['./components/bar'], resolve)
-// import Home from './components/home'
-// import Hello from './components/hello'
-// import List from './components/list'
-
-const UserHome = { template: '<div>Home</div>' }
-const UserProfile = { template: '<div>Profile</div>' }
-const UserPosts = { template: '<div>Posts</div>' }
-
+// const Index = resolve => require(['./components/index'], resolve)
+const EditContent = resolve => require(['./components/edit/editContent'], resolve)
+const SystemManage = resolve => require(['./components/edit/systemManage'], resolve)
+const FileManage = resolve => require(['./components/edit/fileManage'], resolve)
+const UserManage = resolve => require(['./components/edit/userManage'], resolve)
+const ActivityManage = resolve => require(['./components/edit/activityManage'], resolve)
+const SystemLog = resolve => require(['./components/edit/systemLog'], resolve)
 /**
  * 使用vue-router
  */
@@ -28,13 +17,14 @@ Vue.use(VueRouter)
  * [VueRouter 创建一个路由器实例, 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置]
  */
 const routes = [
-  // { path: '/home', component: Home },
-  { path: '/home/:id', name: 'home', component: Home, children: [{ path: '', component: UserHome }, { path: 'profile', component: UserProfile }, { path: 'posts', component: UserPosts }] },
-  { path: '/hello', component: Hello },
-  { path: '/index', component: Index },
-  { path: '/mint', component: Mint },
-  { path: '/inputBox', component: InputBox },
-  { path: '/animation', component: Animation }
+  { path: '', component: EditContent },
+  { path: '/index', component: SystemManage },
+  { path: '/file', component: FileManage },
+  { path: '/user', component: UserManage },
+  { path: '/activity', component: ActivityManage },
+  { path: '/log', component: SystemLog }
+  // { path: '/main/:id', component: Editor, children: [{ path: 'Editor', component: Editor }] }
+  // { path: '/index', component: Index }
 ]
 
 const router = new VueRouter({

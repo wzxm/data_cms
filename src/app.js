@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import MintUI from 'mint-ui'
+// import MintUI from 'mint-ui'
 
-import App from './App'
+import App from './App.vue'
 import store from './vuex/store'
 import router from './routers'
 
-Vue.use(MintUI)
+// Vue.use(MintUI)
 
 /**
  * [template 实例化Vue]

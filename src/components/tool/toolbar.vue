@@ -3,50 +3,66 @@
     <ul class="nav nav-sidebar">
       <li>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="请输入搜索条件">
+          <input type="text" class="form-control" placeholder="请输入搜索条件" v-model.trim="query">
         </div>
       </li>
-      <li v-for="item in list">
-        <router-link :to="item.url" active-class="active">{{ item.name }}</router-link>
+      <li v-for="(item, index) in computedList" :key="item.id">
+        <!-- <router-link :to="item.url" active-class="active">{{ item.name }}</router-link> -->
+        <a href="javascript:;" @click="cut(item)">{{ item.name }}</a>
       </li>
-      <!-- <router-link tag="li" :to="item.url" active-class="active" v-for="item in list">
-        <a @click="editNavBar(item)">{{ item.name }}</a>
-      </router-link> -->
     </ul>
   </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
+  // init 组件实例刚被创建，组件属性计算之前，如 data 等
+  beforeCreate () {
+    console.log('toolbar init success')
+  },
   data () {
     return {
+      query: '',
       list: [{
-        id: 1, name: '系统管理', url: '/index'
+        id: 1, name: '系统管理', engname: 'xitongguanli', url: '/index'
       }, {
-        id: 2, name: '文档管理', url: '/file'
+        id: 2, name: '文档管理', engname: 'wendangguanli', url: '/file'
       }, {
-        id: 3, name: '会员管理', url: '/user'
+        id: 3, name: '会员管理', engname: 'huiyuanguanli', url: '/user'
       }, {
-        id: 4, name: '活动推送管理', url: '/activity'
+        id: 4, name: '活动推送管理', engname: 'huodongtuisongguanli', url: '/activity'
       }, {
-        id: 5, name: '系统日志', url: '/log'
+        id: 5, name: '系统日志', engname: 'xitongrizhi', url: '/log'
       }],
       data: {
       }
     }
   },
   computed: {
+    computedList () {
+      var vm = this
+      return this.list.filter((item) => {
+        return (item.name.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1) || (item.engname.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1)
+      })
+    },
+    ...mapState({
+    }),
     ...mapGetters([
       // 获取的参数
     ])
   },
   methods: {
-    ...mapActions({
-      edit: 'editNavBar'
-    })
+    cut (item) {
+      this.$store.dispatch('editNavBar', item).then((m) => {
+        this.$router.push(m.url)
+      })
+    }
+    // ...mapActions({
+    //   editNavBar: 'editNavBar'
+    // })
   },
   created () {
     // 组件创建完后获取数据，
@@ -58,8 +74,11 @@ export default {
    * @type {Object}
    */
   watch: {
-    '$route' () {
-      // console.log(this)
+    msg () {
+      console.log(this.msg)
+    },
+    '$route' (to, from) {
+      // console.log(this.$router)
     }
   }
 }
@@ -69,12 +88,4 @@ export default {
   .sidebar {
     padding-top: 30px;
   }
-  /*#toolbar {
-    float: left;
-    width: 20%;
-    height: 100%;
-    background-color: #30414D;
-    color: #767676;
-    padding: 60px 5px;
-  }*/
 </style>

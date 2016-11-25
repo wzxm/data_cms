@@ -6,8 +6,12 @@
 // export const increment = ({ commit, state }) => {
 //   commit('increment', 1)
 // }
+// import router from '../routers.js'
+
 export const editNavBar = ({ commit, state }, e) => {
+  // router.push(e.url)
   return new Promise((resolve, reject) => {
     commit('editNavBar', e.name)
+    resolve(e)
   })
 }

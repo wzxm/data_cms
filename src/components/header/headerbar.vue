@@ -2,7 +2,7 @@
   <nav id="headerbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <router-link to="/main" active-class="active" class="navbar-brand">Data-CMS</router-link>
+          <router-link to="/main" active-class="active" class="navbar-brand">{{ systemName }}</router-link>
         </div>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -40,10 +40,15 @@ export default {
       }
     }
   },
-  computed: mapGetters({
-    username: 'getUserName',
-    userState: 'getUserState'
-  }),
+  computed: {
+    ...mapState({
+      systemName: state => state.systemName
+    }),
+    ...mapGetters({
+      username: 'getUserName',
+      userState: 'getUserState'
+    })
+  },
   methods: {
     ...mapActions([
     ])

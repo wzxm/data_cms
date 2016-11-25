@@ -9,6 +9,7 @@ Vue.use(Vuex)
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // TODO 放置初始状态
+  systemName: 'CMS 系统',
   username: 'Simon', // 用户名
   userState: false, // 登录状态
   nav_bar: '系统管理' // 当前所处的bar

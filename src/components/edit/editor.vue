@@ -1,7 +1,7 @@
 <template>
   <div id="editor" class="col-sm-9 col-md-10 main">
     <h3 class="page-header">Date_CMS站点&nbsp;&nbsp;<span class="nav-bar">{{ getNavBar }}</span></h3>
-    <router-view class="view"></router-view>
+    <keep-alive><router-view class="view"></router-view></keep-alive>
   </div>
 </template>
 

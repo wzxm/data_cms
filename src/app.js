@@ -1,3 +1,6 @@
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
+
 import Vue from 'vue'
 // import MintUI from 'mint-ui'
 

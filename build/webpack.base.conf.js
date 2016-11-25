@@ -13,6 +13,10 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 module.exports = {
   entry: {
     app: './src/app.js'
+    // vendor: [
+    //   'jquery',
+    //   'bootstrap/dist/js/bootstrap.min.js'
+    // ]
   },
   output: {
     path: config.build.assetsRoot,
@@ -29,7 +33,8 @@ module.exports = {
       'vue$': 'vue/dist/vue',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'jquery': 'jquery'
     }
   },
   resolveLoader: {

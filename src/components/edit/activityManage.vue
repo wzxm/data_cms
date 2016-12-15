@@ -24,10 +24,10 @@
           <tbody>
             <tr class="list" v-for="(item, index) in computedList" :key="index">
               <td><input type="checkbox" :id="item._id" :value="index" v-model="checked"></td>
-              <td><input class="form-control" type="text" v-model="item.title"></td>
-              <td><input class="form-control" type="text" v-model="item.content"></td>
-              <td><span>{{ item._id }}</span></td>
-              <td><span>{{ item.updateDate }}</span></td>
+              <td @click="checktr(index, item)"><input class="form-control" type="text" v-model="item.title" disabled="disabled"></td>
+              <td @click="checktr(index, item)"><input class="form-control" type="text" v-model="item.content" disabled="disabled"></td>
+              <td @click="checktr(index, item)"><span>{{ item._id }}</span></td>
+              <td @click="checktr(index, item)"><span>{{ item.updateDate }}</span></td>
               <td>
                 <button type="button" class="btn btn-primary btn-xs">配置</button>
                 <button type="button" class="btn btn-primary btn-xs" @click="alertModal(item)">编辑</button>
@@ -96,11 +96,21 @@ export default {
     ...mapActions([
       // 'editNote'
     ]),
+    checktr (index, item) {
+      let vm = this
+      console.log(this.computedList[index].checked)
+      if (item.checked) {
+        vm.list[index].checked = false
+      } else {
+        vm.list[index].checked = true
+      }
+    },
     alertModal (item) {
       let vm = this
-      if (this.delList.length > 0) {
+      console.log(this)
+      if (this.checked.length > 0) {
         vm.modal.title = '编辑活动文案'
-        vm.modal.content = '<label>标题: </label><input type="text" value="' + item.title + '" />'
+        vm.modal.content = '<label>标题: </label>&nbsp;<input type="text" value="' + item.title + '" />'
         $('.bs-example-modal-lg').modal({
           keyboard: true
         })
